@@ -24,6 +24,7 @@ export const config = {
     url: process.env.CLIENT_URL || "http://localhost:4200",
     requests: {
       GET_NETWORKS_URL: `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/nr?WC=class%3D1000792%20and%20delete_flag%3D0&start=1&size=1000&SORT=z_requests_network_count DESC`,
+      GET_FIRST_NETWORK_URL: `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/nr?WC=class%3D1000792%20and%20delete_flag%3D0&start=1&size=1&SORT=z_requests_network_count DESC`,
       GET_SERVICES_URL_FUNCTION: (id: string) =>
         `http://${process.env.LEHAVA_API_HOST}:${process.env.LEHAVA_API_PORT}/caisd-rest/z_networks_to_service?WC=network%3D${id}%20and%20delete_flag%3D0%20and%20z_service_family%3D1000106&start=1&size=1000&SORT=z_requests_service_count DESC`,
       GET_OPEN_TASKS_URL_FUNCTION: (UUID: string) =>

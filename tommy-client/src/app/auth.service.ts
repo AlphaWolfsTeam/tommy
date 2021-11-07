@@ -25,9 +25,8 @@ export class AuthService {
       this.userName = res.name.firstName + " " + res.name.lastName;
       this.userT = res.adfsId.split("@")[0];
       this.phone = res.phoneNumbers;
-      this.api.getUUID(this.userT).subscribe((res: any) => {
-        this.userUUID = res.collection_cnt.cnt['@id'];
-      });
+      this.api.getUUID(this.userT).subscribe({next: (x: any) => {
+        if(x.collection_cnt?.cnt) this.userUUID = x.collection_cnt.cnt['@id']}, error: (err: any) => { console.log('Error connection to LehavaAPI') }});
     });
   }
 

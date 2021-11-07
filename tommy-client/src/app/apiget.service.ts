@@ -277,11 +277,11 @@ export class ApigetService {
     );
   }
 
-  getHichatIframe() {
-    return this.http.get(config.GET_HICHAT_IFRAME_URL, {
-      withCredentials: true,
-    });
-  }
+  // getHichatIframe() {
+  //   return this.http.get(config.GET_HICHAT_IFRAME_URL, {
+  //     withCredentials: true,
+  //   });
+  // }
 
   sendTaskSumMsg(msgObj: object) {
     return this.http.post(config.POST_SEND_HICHAT_MSG, msgObj, {
@@ -307,5 +307,11 @@ export class ApigetService {
       withCredentials: true,
       headers: this.categoryDescriptionHeaders,
     });
+  }
+
+  getLehavaHealthStatus() {
+    return this.http.get(config.LEHAVA_HEALTH_CHECK_URL, {
+      withCredentials: true,
+    })
   }
 }
