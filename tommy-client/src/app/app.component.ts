@@ -32,11 +32,11 @@ export class AppComponent {
   initialPlace: model1;
   organizationUUID: string;
   try: string='hello';
+  lehavaConnection;
 
 
   @Output() exampleOutput = new EventEmitter<string>();
   userUUID: string;
-  isUserUuidSetted: boolean = false;
   constructor(
     @Inject(DOCUMENT) document,
     public apigetService: ApigetService,
@@ -52,6 +52,7 @@ export class AppComponent {
   ) { }
 
   async ngOnInit() {
+    this.isLehavaConnection();
     this.authService.loginSub().subscribe((res: any) => {
       this.userName = res.name.firstName + " " + res.name.lastName;
       this.userT = res.adfsId.split("@")[0];
@@ -66,9 +67,9 @@ export class AppComponent {
       this._eventEmmiter.sendPhone("this.phoneNumber[0]");
       this.apigetService.getUUID(this.userT).subscribe((res: any) => {
         if (Array.isArray(res.collection_cnt.cnt)) {
-          this.userUUID = res.collection_cnt.cnt[1]["@id"];
+          if(res.collection_cnt.cnt) this.userUUID = res.collection_cnt.cnt[1]["@id"];
         } else {
-          this.userUUID = res.collection_cnt.cnt["@id"];
+          if(res.collection_cnt.cnt) this.userUUID = res.collection_cnt.cnt["@id"];
         }
         this.authService.setUUID(this.userUUID);
         this.postReqService.userT = this.userT;
@@ -82,16 +83,14 @@ export class AppComponent {
       this.openConf = res;
     });
     this.lehavaDataService.setLehavaData();
-    setTimeout(() => {
-      this.isUserUuidSetted = true;
-    }, 1500);
-    // console.clear();
   }
 
   isLehavaConnection() {
-    console.log(!!(this.isUserUuidSetted && this.userUUID));
-    
-    return !!(this.isUserUuidSetted && this.userUUID)
+    const obs = {
+      next: (x: any) => this.lehavaConnection = x,
+      error: (err: Error) => this.lehavaConnection = false,
+    };
+    this.apigetService.getLehavaHealthStatus().subscribe(obs)
   }
 
   onHome() {

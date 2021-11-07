@@ -125,6 +125,11 @@ module.exports = (app) => {
     } else {
         if (validator.userExistsValidator(req)) {
             res.json(lehavaData.users[arraysearch("T", req.query.WC.split("'")[1], lehavaData.users)].data);
+            // res.json({
+            //   collection_cnt: {
+            //     '@TOTAL_COUNT': '0',
+            // }
+            // });
         } else {
             res.status(400).send({
                 error: `User:${req.query.WC.split("'")[1]} Doesn't Exist`

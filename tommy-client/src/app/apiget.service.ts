@@ -308,4 +308,10 @@ export class ApigetService {
       headers: this.categoryDescriptionHeaders,
     });
   }
+
+  getLehavaHealthStatus() {
+    return this.http.get(config.LEHAVA_HEALTH_CHECK_URL, {
+      withCredentials: true,
+    })
+  }
 }

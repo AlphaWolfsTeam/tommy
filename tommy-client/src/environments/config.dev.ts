@@ -42,5 +42,6 @@ export const config = {
         firstSen: 'משתמש יקר',
         secondSen: 'לא קיים עבורך משתמש במערכת',
         thirdSen: 'אנא פנה למוקד הממונה עליך',
-    }
+    },
+    LEHAVA_HEALTH_CHECK_URL: '/thirdpartyhealth/lehava'
 };

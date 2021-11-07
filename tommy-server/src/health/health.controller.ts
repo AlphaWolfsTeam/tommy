@@ -17,6 +17,6 @@ export default class HealthController {
             },
             timeout: 1000
         });
-        alive ? res.send('alive') : res.status(503).send('Service unavailable');
+        alive ? res.json('alive') : res.status(503).send('Service unavailable');
     }
 }
