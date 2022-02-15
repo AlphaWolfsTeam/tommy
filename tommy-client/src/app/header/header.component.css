@@ -81,3 +81,10 @@ span {cursor: context-menu;}
     position: absolute;
     left: 20px;
 }
+
+#info-logo {
+    height: 30px;
+    position: absolute;
+    left: 110px;
+    cursor: pointer;    
+}

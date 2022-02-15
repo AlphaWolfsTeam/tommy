@@ -32,7 +32,6 @@ export class KnowledgeArticleComponent implements OnInit {
     this.apiGetService
       .getCategoryDescription(categoryId)
       .subscribe((res: any) => {
-        console.log(res);
         this.knowledgeArticle = res.collection_pcat.pcat
           ? res.collection_pcat.pcat.description.split(' ')
           : null;
